@@ -11,6 +11,10 @@ class Registry {
     this.cache = new Map();
   }
   async getSchema(filter) {
+    // nasty hack: reset registry to prevent type duplication error
+    this.parseOptions = this.parseOptions || {};
+    this.parseOptions.registry = {};
+
     const key = filter.id ? filter.id : `${filter.subject}:${filter.version}`;
     /* Check if schema is in cache: */
     if (this.cache.has(key)) {
@@ -41,6 +45,10 @@ class Registry {
         )}\n${url}\n${response.statusText}`
       );
     const { id, schema } = await response.json();
+
+    // nasty hack: reset registry to prevent type duplication error
+    // in-case the registry is populated by another message encoding in parallel
+    this.parseOptions.registry = {};
     const parsedSchema = avsc.parse(schema, this.parseOptions);
 
     /* Result */
