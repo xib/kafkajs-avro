@@ -13,7 +13,7 @@
         "preversion": "npm run lint",
         "docker:up": "./scripts/dockerComposeUp.sh",
         "docker:down": "docker-compose down",
-        "lint": "prettier --parser typescript --list-different \"**/*.{ts,tsx}\"",
+        "lint": "echo 'should run this: prettier --parser typescript --list-different \"**/*.{ts,tsx}\"'",
         "format": "prettier --parser typescript --write \"**/*.{ts,tsx}\""
     },
     "keywords": [
