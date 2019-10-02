@@ -5,9 +5,9 @@
     "main": "build/index.js",
     "types": "build/index.d.ts",
     "scripts": {
-        "test": "yarn lint && ./scripts/testWithKafka.sh 'jest --forceExit --detectOpenHandles --ci --maxWorkers=4 --no-watchman'",
+        "test": "./scripts/testWithKafka.sh 'jest --forceExit --detectOpenHandles --ci --maxWorkers=4 --no-watchman'",
         "test:watch": "./scripts/testWithKafka.sh 'jest --watch --forceExit --detectOpenHandles --maxWorkers=4 --no-watchman'",
-        "build": "tsc",
+        "build": "rm -rf build/* && tsc",
         "prepare": "npm run build",
         "prepublishOnly": "npm test && npm run lint",
         "preversion": "npm run lint",
